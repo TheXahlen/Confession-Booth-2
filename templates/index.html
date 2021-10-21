@@ -1,32 +1,68 @@
-
 <!doctype html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Dahlen Bryces Personal Website">
-    <meta name="keywords" content="HTML,CS STUDENT,FUN">
-    <meta name="author" content="Dahlen Bryce">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="icon" href="assets/images/website-icon.ico">
-    <title> DAHLEN :) </title>
-</head>
-<body>
-<div class="d-flex bg-dark justify-content-center">
-    <div class="row bg-dark absolute-fixed">
-        <button type="submit" form="submit_form" class="p-4 col-md-4 btn btn-dark">SUBMIT </button>
-        <button class="p-4 col-md-4 btn btn-dark">SWITCH </button>
-        <button class="p-4 col-md-4 btn btn-dark">CYCLE</button>
-    </div>
-</div>
-<div class="text-white row d-flex justify-content-center display-5 bg-dark" id="identity">
-    {{uuid}}
-</div>
-
-<form id="submit_form" action="#" method="post">
-    <p>FOR SUBMISSION</p> <p>
-        <input type="text" name="nm" />
-    </p>
-</form>
-</body>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="description" content="Dahlen Bryces Personal Website">
+      <meta name="keywords" content="HTML,CS STUDENT,FUN">
+      <meta name="author" content="Dahlen Bryce">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+      <title> DAHLEN :) </title>
+   </head>
+   <body class="bg-dark">
+      <div class="d-flex bg-dark justify-content-center">
+         <div class="row bg-dark absolute-fixed">
+            <input type="submit" id="Submit" value="Submit" form="submit_form"  class="p-4 col-md-4 btn btn-dark">
+            <input type="button"  class="p-4 col-md-4 btn btn-dark" value="Switch" id="Switch" >
+            <input type=button disabled="disabled" value="Cycle" id="Cycle" class="p-4 col-md-4 btn btn-dark">
+         </div>
+      </div>
+      <div class=" rounded border text-white row d-flex justify-content-center display-3 bg-dark"  id="identity"></div>
+      <form id="submit_form" class=" d-flex bg-dark justify-content-center form-control-md" style="padding:15px;" action="{{ url_for('submit') }}" method="post" >
+         <input type="text" style="height:55px;" class="border-bottom" name="confession" size="45" >
+         <input type="text" name="identity_send"  id="identity_send" style="visibility:hidden !important;  position: absolute; 
+  left: -999em;  width:0px; height:0px;"> 
+      </form>
+      <div class="d-flex justify-content-center" style="display:none !important;") id="cycle_form">
+         <p class="text-white display-5 bg-dar border-left  p-2">
+            {{json}}
+         </p>
+      </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script>
+         $(function(){
+             $('#Switch').click(function() {
+         if($("#Cycle").prop("disabled")){
+         $("#Cycle").prop("disabled",false);
+         $("#Submit").prop("disabled",true);
+         $('#submit_form').attr("style", "display: none !important");
+         $('#cycle_form').attr("style", "visibility: visible !important");
+         }
+         else{
+         $("#Cycle").prop("disabled",true);
+         $("#Submit").prop("disabled",false);
+         $('#submit_form').attr("style", "visibility: visible !important");
+         $('#cycle_form').attr("style", "display:none !important");
+         }});});
+      </script>
+      <script> 
+         function get_identity(ip) {
+             var ip = ip.split(".")
+             let base_ip = parseInt(ip.join("6"))
+            // console.log(base_ip)
+             base_ip = base_ip * 5
+            // console.log(base_ip)
+             let shuffled_base = btoa(base_ip)
+             shuffled_base = shuffled_base.substring(0, shuffled_base.length / 2 )
+             document.getElementById("identity").innerHTML = shuffled_base.split().reverse()
+             document.getElementById("identity_send").value = shuffled_base.split().reverse()
+         
+         }
+         $.getJSON("https://api.ipify.org/?format=json", function(e) {
+             get_identity(e.ip);
+         });
+         
+           
+      </script>
+   </body>
 </html>
