@@ -14,20 +14,18 @@
          <div class="row bg-dark absolute-fixed">
             <input type="submit" id="Submit" value="Submit" form="submit_form"  class="p-4 col-md-4 btn btn-dark">
             <input type="button"  class="p-4 col-md-4 btn btn-dark" value="Switch" id="Switch" >
-            <input type=button disabled="disabled" value="Cycle" id="Cycle" class="p-4 col-md-4 btn btn-dark">
+            <input type="submit" onclick="UpdateDisplay()" disabled="disabled" value="Cycle" id="Cycle" class="p-4 col-md-4 btn btn-dark">
          </div>
       </div>
       <div class=" rounded border text-white row d-flex justify-content-center display-3 bg-dark"  id="identity"></div>
-      <form id="submit_form" class=" d-flex bg-dark justify-content-center form-control-md" style="padding:15px;" action="{{ url_for('submit') }}" method="post" >
-         <input type="text" style="height:55px;" class="border-bottom" name="confession" size="45" >
-         <input type="text" name="identity_send"  id="identity_send" style="visibility:hidden !important;  position: absolute; 
-  left: -999em;  width:0px; height:0px;"> 
-      </form>
       <div class="d-flex justify-content-center" style="display:none !important;") id="cycle_form">
-         <p class="text-white display-5 bg-dar border-left  p-2">
-            {{json}}
-         </p>
-      </div>
+        <p id="confession_display" class="text-white display-5 bg-dar border-left  p-2"></p>
+     </div>
+      <form id="submit_form" class=" d-flex bg-dark justify-content-center form-control-md" style="padding:15px;" action="{{ url_for('submit') }}" method="post" >
+         <input type="text" style="height:55px;" class="border-bottom" name="confession" size="15" >
+         <input type="text" name="identity_send"  id="identity_send" style="visibility:hidden !important;  position: absolute; left: -999em;  width:0px; height:0px;">
+      </form>
+      <p id="confession_items" style="position:absoulte; left: -999em; visibility:hidden !important;">{{ json| tojson | safe }}<p>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script>
          $(function(){
@@ -45,7 +43,27 @@
          $('#cycle_form').attr("style", "display:none !important");
          }});});
       </script>
-      <script> 
+
+      <script>
+      var myObject = document.getElementById("confession_items").innerHTML
+      JSONarray = []
+      myObject = JSON.parse(myObject)
+
+      length = Object.keys(myObject['entries'])
+      length = length.length
+      var myObject = document.getElementById("confession_items").innerHTML = ""
+      for (let i = 0; i < length; i++) {
+         console.log(i)
+         let confession = myObject['entries'][i]["index"]["confession"]
+         let identiy = myObject['entries'][i]["index"]["identity"]
+         JSONarray.push(confession + " Posted by: " + identiy)
+      function UpdateDisplay(){
+         var item = JSONarray[Math.floor(Math.random()*JSONarray.length)];
+         document.getElementById("confession_display").innerHTML = item
+      }}
+      console.log(JSONarray)
+      </script>
+      <script>
          function get_identity(ip) {
              var ip = ip.split(".")
              let base_ip = parseInt(ip.join("6"))
@@ -56,13 +74,13 @@
              shuffled_base = shuffled_base.substring(0, shuffled_base.length / 2 )
              document.getElementById("identity").innerHTML = shuffled_base.split().reverse()
              document.getElementById("identity_send").value = shuffled_base.split().reverse()
-         
+
          }
          $.getJSON("https://api.ipify.org/?format=json", function(e) {
              get_identity(e.ip);
          });
-         
-           
+
+
       </script>
    </body>
 </html>
