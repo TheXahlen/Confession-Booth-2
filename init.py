@@ -1,8 +1,7 @@
-
 from flask import *
 import os
 import json
-def post_json(identity,confession,size,color):
+def post_json(identity,confession,size,color,decoration,time):
     if confession == "" or identity == "":
         pass
     else:
@@ -14,7 +13,9 @@ def post_json(identity,confession,size,color):
                 "identity" : identity,    
                 "confession" : confession,
                 "size" : size,
-                "color" : color
+                "color" : color,
+                "decoration": decoration,
+                "time": time
                 }})
         with open("data.json", 'w') as json_file:
             json.dump(listObj, json_file,indent=4,separators=(',',': '))
@@ -36,8 +37,10 @@ def submit():
         identity = request.form["identity_send"]
         size = request.form["size_send"]
         color = request.form["color_send"]
-        print("Submitted data:", confession,identity,size,color)
-        post_json(identity,confession,size,color)
+        decoration = request.form["decoration_send"]
+        time = request.form["time_send"]
+        print("Submitted data:", confession,identity,size,color,decoration,time)
+        post_json(identity,confession,size,color,decoration,time)
         return redirect(request.referrer)
     else:
         return render_template("index.html/",json=ReturnList())
