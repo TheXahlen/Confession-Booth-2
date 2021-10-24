@@ -1,8 +1,9 @@
+
 from flask import *
 import os
 import json
-def post_json(idty,confession):
-    if confession == None or idty == None:
+def post_json(identity,confession,size,color):
+    if confession == "" or identity == "":
         pass
     else:
         with open("data.json") as fp:
@@ -10,8 +11,10 @@ def post_json(idty,confession):
             fp.close()
             listObj["entries"].append({
                 "index" :{
-                "identity" : idty,    
-                "confession" : confession
+                "identity" : identity,    
+                "confession" : confession,
+                "size" : size,
+                "color" : color
                 }})
         with open("data.json", 'w') as json_file:
             json.dump(listObj, json_file,indent=4,separators=(',',': '))
@@ -23,16 +26,18 @@ def ReturnList():
         return_json = listObj
     return return_json
 app = Flask(__name__)
-@app.route('/')
+@app.route('/') 
 def home():
     return render_template("index.html",json=ReturnList())
 @app.route('/submit', methods=['POST','GET'])
 def submit():
     if request.method == "POST":
-        confession = request.form["confession"]
-        idty = request.form["identity_send"]
-        post_json(idty,confession)
+        confession = request.form["confession_send"]
+        identity = request.form["identity_send"]
+        size = request.form["size_send"]
+        color = request.form["color_send"]
+        print("Submitted data:", confession,identity,size,color)
+        post_json(identity,confession,size,color)
         return redirect(request.referrer)
     else:
         return render_template("index.html/",json=ReturnList())
-
