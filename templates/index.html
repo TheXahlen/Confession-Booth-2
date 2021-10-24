@@ -67,39 +67,35 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <script>
 	function get_identity(ip) {
-		var ip = ip.split(".")
-		let base_ip = parseInt(ip.join("6"))
-			// console.log(base_ip)
-		base_ip = base_ip * 5
-			// console.log(base_ip)
-		let shuffled_base = btoa(base_ip)
-		shuffled_base = shuffled_base.substring(0, shuffled_base.length / 2)
-		document.getElementById("identity").innerHTML = shuffled_base.split().reverse()
-			// document.getElementById("identity_send").value = shuffled_base.split().reverse()
-		return shuffled_base.split().reverse()
+	var ip = ip.split(".")
+	let base_ip = parseInt(ip.join("6"))
+	base_ip = base_ip * 5
+	let shuffled_base = btoa(base_ip)
+	shuffled_base = shuffled_base.substring(0, shuffled_base.length / 2)
+	document.getElementById("identity").innerHTML = shuffled_base.split().reverse()
+	return shuffled_base.split().reverse()
 	}
 	$.getJSON("https://api.ipify.org/?format=json", function(e) {
-		get_identity(e.ip);
-		window.identity_made = get_identity(e.ip)
+	get_identity(e.ip);
+	window.identity_made = get_identity(e.ip)
 	});
 	</script>
 	<script>
 	$(function() {
-		$('#Switch').click(function() {
-			if($("#Cycle").prop("disabled")) {
-				$("#Cycle").prop("disabled", false);
-				$("#Submit").prop("disabled", true);
-				$('#submit_form').attr("style", "display: none !important");
-				$('#cycle_form').attr("style", "visibility: visible !important");
-				$('#cust_select').attr("style", "display: none !important");
-			} else {
-				$("#Cycle").prop("disabled", true);
-				$("#Submit").prop("disabled", false);
-				$('#submit_form').attr("style", "visibility: visible !important");
-				$('#cycle_form').attr("style", "display:none !important");
-				$('#cust_select').attr("style", "visibility: visible !important");
-			}
-		});
+	$('#Switch').click(function() {
+	if($("#Cycle").prop("disabled")) {
+	$("#Cycle").prop("disabled", false);
+	$("#Submit").prop("disabled", true);
+	$('#submit_form').attr("style", "display: none !important");
+	$('#cycle_form').attr("style", "visibility: visible !important");
+	$('#cust_select').attr("style", "display: none !important");
+	} else {
+	$("#Cycle").prop("disabled", true);
+	$("#Submit").prop("disabled", false);
+	$('#submit_form').attr("style", "visibility: visible !important");
+	$('#cycle_form').attr("style", "display:none !important");
+	$('#cust_select').attr("style", "visibility: visible !important");
+	}});
 	});
 	</script>
 	<script>
@@ -110,10 +106,7 @@
 		return number
 		if(number = number_retrieved) {
 			Gen_Number()
-		} else {
-			return number
-		}
-	}
+		} else {return number}}
 	</script>
 	<script>
 	var myObject =  '{{ json| tojson | safe }}'
@@ -129,9 +122,9 @@
       let color = myObject['entries'][i]["index"]["color"]
       let confession_complete = confession + " Posted by: " + identiy
       empty.push({
-         confession:  confession_complete,
+         confession: confession_complete,
          size: size,
-         color : color 
+         color: color 
       });
       console.log(empty)
 		function UpdateDisplay() {
@@ -142,9 +135,7 @@
          document.getElementById("confession_display").style.color = color
 			document.getElementById("confession_display").innerHTML = item
          document.getElementById("confession_display").style.fontSize = size
-
-		}
-	}
+		}}
 	UpdateDisplay()
 	$("#confession_items").remove();
 	</script>
