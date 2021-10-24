@@ -25,9 +25,9 @@
 			<input type="button" onclick="UpdateDisplay()" disabled="disabled" value="Cycle" id="Cycle" class=" p-4 col-md-4 btn btn-dark"> </div>
 	</div>
   <hr class="bg-dark">
-	<div id="cust_select" class=" d-flex justify-content-center flex-container bg-darkr">
+	<div id="cust_select" class=" d-flex justify-content-center  bg-darkr">
       <div class="justify-content-center">
-         <select name="size" class=" border border-light btn btn-dark dropdown-toggle"  id="size">
+         <select name="size" class=" p-3 border border-light btn btn-dark dropdown-toggle"  id="size">
             <option value="30px">Small</option>
             <option value="35px">Medium</option>
             <option value="45px">Large</option>
@@ -35,8 +35,8 @@
          </select>
       </div>
       <div class="justify-content-center">
-         <select  class="  border border-light btn btn-dark dropdown-toggle"  id="color">
-            <option value="black">Black</option>
+         <select  class=" p-3 border border-light btn btn-dark dropdown-toggle"  id="color">
+            <option value="white">White</option>
             <option value="blue">Blue</option>
             <option value="red">Red</option>
             <option value="green">Green</option>
@@ -44,16 +44,16 @@
          </select>
       </div>
       <div class="justify-content-center">
-         <select  class="  border border-light btn btn-dark dropdown-toggle"  id="decoration">
+         <select  class=" p-3 border border-light btn btn-dark dropdown-toggle"  id="decoration">
             <option value="none">None</option>
             <option value="underline">Underline</option>
             <option value="overline">Overline</option>
          </select>
       </div>
    </div>
-   
+   <span class="p-2"></span>
 	<form id="submit_form" class=" d-flex  justify-content-center form-control-md border-dark rounded" style="padding-bottom:65px;" action="{{ url_for('submit') }}" method="post">
-      <input type="text" name="confession_send" class="justify-content-center border-bottom"  size="35">
+      <input type="text" name="confession_send" class="justify-content-center border-bottom shadow-textarea"  size="35">
 		<input type="text" name="identity_send"  class="col-sm-12" id="identity_send" style="visibility:hidden !important;  position: absolute; left: -999em;  width:0px; height:0px;"> 
       <input type="text" name="size_send"  class="col-sm-12" id="size_send" style="visibility:hidden !important;  position: absolute; left: -999em;  width:0px; height:0px;"> 
       <input type="text" name="color_send"  class="col-sm-12" id="color_send" style="visibility:hidden !important;  position: absolute; left: -999em;  width:0px; height:0px;">
@@ -61,10 +61,12 @@
       <input type="text" name="time_send"  class="col-sm-12" id="time_send" style="visibility:hidden !important;  position: absolute; left: -999em;  width:0px; height:0px;">
 
    </form>
-   <p class=" display-5 bg-dar border-left  p-2 text-white" style="display:none !important;" id="confession_info"></p>
+   <div > 
+   <p class=" display-5 bg-dar border-left d-flex justify-content-center p-2 text-white" style="display:none !important;" id="confession_info"></p>
    <div class="d-flex justify-content-center" style="display:none !important;" id="cycle_form">
 		<p id="confession_display" class=" display-5 bg-dar   p-2"></p>
 	</div>
+   </div>
    <script id="for_delete"> let myObject =  '{{ json| tojson | safe }}' </script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <script src="{{url_for('static', filename='assets/javascript/get_time.js')}}"></script>
