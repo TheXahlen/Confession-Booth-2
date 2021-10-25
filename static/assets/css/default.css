@@ -1,4 +1,38 @@
+/*
 body  {
   background-image: url("../images/background.jpg");
   background-size: 1.8% 1.8%;
+}
+*/
+.hr1 {
+  width:75%;
+  border-radius: 100%;
+  margin-top: 2rem;
+  margin-bottom: 20px;
+  border: 10px solid rgb(0, 0, 0);
+  border-top: 15px solid rgb(255, 255, 255);
+}
+.hr2 {
+  width:75%;
+  border-radius: 100%;
+  margin-top: 2rem;
+  margin-bottom: 20px;
+  border: 10px solid rgb(0, 0, 0);
+  border-bottom: 15px solid rgb(255, 255, 255);
+}
+
+@font-face {
+  font-family: 'Rainbow';
+  src: url("../fonts/Rainbow.ttf"),
+  format('truetype');
+}
+
+@font-face {
+  font-family: 'Squid';
+  src: url("../fonts/Squids.ttf"),
+  format('truetype');
+}
+.rep_text{
+width: 55%;
+box-sizing:border-box
 }
