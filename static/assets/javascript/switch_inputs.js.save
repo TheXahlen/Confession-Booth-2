@@ -1,0 +1,19 @@
+$("#Switch").click(function (e) {
+	e.stopPropagration()
+	$('#Switch').click(function() {
+	if($("#Cycle").prop("disabled")) {
+	$("#Cycle").prop("disabled", false);
+	$("#Submit").prop("disabled", true);
+	$('#submit_form, #cust_select').attr("style", "display: none !important");
+	$('#cycle_form, #confession_info, #total_display, #all_posts').attr("style", "visibility: visible !important");
+    UpdateDisplay()
+
+
+	} else {
+	e.stopPropagration()
+	$("#Cycle").prop("disabled", true);
+	$("#Submit").prop("disabled", false);
+	$('#submit_form, #cust_select').attr("style", "visibility: visible !important");
+    $('#all_posts, #cust_select, #total_display,#cycle_form, #confession').attr("style", "display: none !important");
+    $('#confession_all').empty();
+}});

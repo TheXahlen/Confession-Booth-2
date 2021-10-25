@@ -44,3 +44,5 @@ def submit():
         return redirect(request.referrer)
     else:
         return render_template("index.html/",json=ReturnList())
+if __name__ == '__main__':
+    app.run(debug=True,host="10.159.13.217",port="8080")
