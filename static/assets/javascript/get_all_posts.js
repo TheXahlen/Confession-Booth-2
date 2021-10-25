@@ -1,4 +1,5 @@
 function Get_All_Posts(identity_passed){
+    $('#confession_all').empty();
     $('#confession_all').attr("style", "visibility: visible  !important");
     $('#total_display').attr("style", "display: none !important");
     all_posts = []
@@ -30,8 +31,6 @@ for (let i = 0; i < all_posts.length; i++) {
     second_node.setAttribute("id", "Confession" + i);
     second_node.setAttribute("class","d-flex justify-content-center")
     first_node.setAttribute("class","display-5 bg-dar border-light rounded border d-flex justify-content-center p-2 text-white")
-
-    
     var first_text_node = document.createTextNode("Posted by: " + all_posts[i].identity + " at " + all_posts[i].time ); 
     var second_text_node = document.createTextNode(all_posts[i].confession); 
     first_node.appendChild(first_text_node);
