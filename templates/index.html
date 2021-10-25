@@ -84,12 +84,12 @@
    </div>
 
    <script id="for_delete"> let myObject =  '{{ json| tojson | safe }}' </script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="{{url_for('static', filename='assets/javascript/switch_input.js')}}"></script>
    <script src="{{url_for('static', filename='assets/javascript/generate_number.js')}}"></script>
    <script src="{{url_for('static', filename='assets/javascript/update_screen.js')}}"></script>
    <script src="{{url_for('static', filename='assets/javascript/get_time.js')}}"></script>
    <script src="{{url_for('static', filename='assets/javascript/identity_assign.js')}}"></script>
-   <script src="{{url_for('static', filename='assets/javascript/switch_input.js')}}"></script>
    <script src="{{url_for('static', filename='assets/javascript/apply_stats.js')}}"></script>
    <script src="{{url_for('static', filename='assets/javascript/get_all_posts.js')}}"></script>
 
