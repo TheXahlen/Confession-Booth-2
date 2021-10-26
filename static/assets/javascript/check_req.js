@@ -1,5 +1,3 @@
 function check_req(){
-
-console.log("SUBMITTED")
-  
+return check_sim()
 }
