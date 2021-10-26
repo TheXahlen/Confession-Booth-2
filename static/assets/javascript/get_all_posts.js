@@ -27,7 +27,7 @@ function Get_All_Posts(identity_passed){
     $('#total_display').attr("style", "display: none !important");
     all_posts = []
 for (let i = 0; i < empty.length; i++) {
-    console.log(empty[i].identity)
+    //console.log(empty[i].identity)
   if(empty[i].identity == identity_passed){
     var confession =  empty[i].confession;
     var size =  empty[i].size;
