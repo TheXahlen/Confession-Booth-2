@@ -6,6 +6,5 @@ var similarity_of_item = stringSimilarity.compareTwoStrings($('#confession_input
 console.log(similarity_of_item)
 if (similarity_of_item > 0.74){
 return false
-}else {
-return true
-}}}
+}
+}return true}
